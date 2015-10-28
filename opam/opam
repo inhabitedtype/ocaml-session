@@ -11,6 +11,10 @@ build: [
   ["ocaml" "setup.ml" "-configure" "--prefix" prefix]
   ["ocaml" "setup.ml" "-build"]
 ]
+install: ["ocaml" "setup.ml" "-install"]
+remove: [
+  ["ocamlfind" "remove" "session"]
+]
 build-test: [
   ["ocaml" "setup.ml" "-configure" "--enable-tests"]
   ["ocaml" "setup.ml" "-build"]
@@ -18,4 +22,5 @@ build-test: [
 ]
 depends: [
   "ocamlfind" {build}
+  "result"
 ]

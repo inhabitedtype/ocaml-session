@@ -10,6 +10,13 @@ License:     BSD-3-clause
 Plugins:     META (0.4), DevFiles (0.4)
 BuildTools:  ocamlbuild
 
+Library session
+  Path:             lib
+  Findlibname:      session
+  Pack:             true
+  BuildDepends:     result
+  Modules:          S
+
 SourceRepository master
   Type:     git
   Location: https://github.com/inhabitedtype/ocaml-session.git

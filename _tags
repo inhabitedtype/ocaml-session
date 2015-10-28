@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: d5cdc7a15a60df3f03201003f35f2966)
+# DO NOT EDIT (digest: c6e8653ede9bcba4276e8d9687301ef0)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -14,4 +14,8 @@ true: annot, bin_annot
 ".git": not_hygienic
 "_darcs": -traverse
 "_darcs": not_hygienic
+# Library session
+"lib/session.cmxs": use_session
+"lib/s.cmx": for-pack(Session)
+<lib/*.ml{,i,y}>: pkg_result
 # OASIS_STOP

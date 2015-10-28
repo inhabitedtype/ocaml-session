@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: 6f78182e922c440b9797d1b089e8fd59)
+version = "0.1.0"
+description = "A session manager for your everyday needs"
+requires = "result"
+archive(byte) = "session.cma"
+archive(byte, plugin) = "session.cma"
+archive(native) = "session.cmxa"
+archive(native, plugin) = "session.cmxs"
+exists_if = "session.cma"
+# OASIS_STOP
+

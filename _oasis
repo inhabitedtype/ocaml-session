@@ -15,7 +15,7 @@ Library session
   Findlibname:      session
   Pack:             true
   BuildDepends:     result
-  Modules:          Memory, S
+  Modules:          Lift, Memory, S
 
 Executable test_memory_backend
   Path:             lib_test

@@ -52,6 +52,14 @@ Library session_postgresql_lwt
   BuildDepends:     lwt, postgresql, result, session, threads
   Modules:          Session_postgresql_lwt
 
+Document session
+  Title:                A session manager for your everyday needs
+  Type:                 ocamlbuild (0.4)
+  BuildTools+:          ocamldoc
+  Install:              true
+  XOCamlbuildPath:      lib
+  XOCamlbuildLibraries: session
+
 Executable test_memory_backend
   Path:             lib_test
   MainIs:           test_memory_backend.ml

@@ -15,7 +15,7 @@ Library session
   Findlibname:      session
   Pack:             true
   BuildDepends:     result
-  Modules:          S
+  Modules:          Memory, S
 
 SourceRepository master
   Type:     git

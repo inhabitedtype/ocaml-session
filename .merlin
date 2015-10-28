@@ -1,5 +1,5 @@
 S lib/**
 B _build/**
 
-PKG result
+PKG result postgresql
 PKG oUnit

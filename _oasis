@@ -10,12 +10,25 @@ License:     BSD-3-clause
 Plugins:     META (0.4), DevFiles (0.4)
 BuildTools:  ocamlbuild
 
+Flag postgresql
+  Description: build the postgresql library
+  Default: false
+
 Library session
   Path:             lib
   Findlibname:      session
   Pack:             true
   BuildDepends:     result
   Modules:          Lift, Memory, S
+
+Library session_postgresql
+  Path:             backends/postgresql
+  Findlibname:      postgresql
+  Findlibparent:    session
+  Build$:           flag(postgresql)
+  Install$:         flag(postgresql)
+  BuildDepends:     postgresql, result, session, threads
+  Modules:          Session_postgresql
 
 Executable test_memory_backend
   Path:             lib_test

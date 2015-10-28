@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 6f78182e922c440b9797d1b089e8fd59)
+# DO NOT EDIT (digest: 4c98c42932a4578a9cc48ec8c83a9228)
 version = "0.1.0"
 description = "A session manager for your everyday needs"
 requires = "result"
@@ -8,5 +8,15 @@ archive(byte, plugin) = "session.cma"
 archive(native) = "session.cmxa"
 archive(native, plugin) = "session.cmxs"
 exists_if = "session.cma"
+package "postgresql" (
+ version = "0.1.0"
+ description = "A session manager for your everyday needs"
+ requires = "postgresql result session threads"
+ archive(byte) = "session_postgresql.cma"
+ archive(byte, plugin) = "session_postgresql.cma"
+ archive(native) = "session_postgresql.cmxa"
+ archive(native, plugin) = "session_postgresql.cmxs"
+ exists_if = "session_postgresql.cma"
+)
 # OASIS_STOP
 

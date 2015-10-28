@@ -1,0 +1,16 @@
+OASISFormat: 0.4
+Name:        session
+Version:     0.1.0
+Synopsis:    A session manager for your everyday needs
+Authors:     Spiros Eliopoulos <spiros@inhabitedtype.com>
+Maintainers: Spiros Eliopoulos <spiros@inhabitedtype.com>
+Homepage:    https://github.com/inhabitedtype/ocaml-session
+Copyrights:  (C) 2015 Inhabited Type LLC
+License:     BSD-3-clause
+Plugins:     META (0.4), DevFiles (0.4)
+BuildTools:  ocamlbuild
+
+SourceRepository master
+  Type:     git
+  Location: https://github.com/inhabitedtype/ocaml-session.git
+  Browser:  https://github.com/inhabitedtype/ocaml-session

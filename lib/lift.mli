@@ -14,7 +14,17 @@ end
 
 (** Lift a synchronous {!S.Now} backend to an asynchronous {!S.Future}
     interface. *)
-module Make(IO:S.IO)(Now:S.Now) : S.Future
+module IO(IO:S.IO)(Now:S.Now) : S.Future
+  with type +'a io = 'a IO.t
+   and type t = Now.t
+   and type key = Now.key
+   and type value = Now.value
+   and type period = Now.period
+
+(** Lift a synchronous {!S.Now} backend to an asynchronous {!S.Future}
+    interface, using threads. This may add concurrency to the program,
+    depending on how [in_thread] is implemented. *)
+module Thread_IO(IO:S.Thread_IO)(Now:S.Now) : S.Future
   with type +'a io = 'a IO.t
    and type t = Now.t
    and type key = Now.key

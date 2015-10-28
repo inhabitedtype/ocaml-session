@@ -70,6 +70,16 @@ module type IO = sig
   val (>>=) : 'a t -> ('a -> 'b t) -> 'b t
 end
 
+(** The signature for blocking computations that can run synchronous
+    computations in a separate thread *)
+module type Thread_IO = sig
+  include IO
+
+  val in_thread : (unit -> 'a) -> 'a t
+  (** [in_thread f] runs [f ()] in a separate thread, returning a blocking
+      computation that will become determined once execution of [f] is complete. *)
+end
+
 (** The signature for asynchronous backends. *)
 module type Future = sig
   type +'a io

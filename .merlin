@@ -2,3 +2,4 @@ S lib/**
 B _build/**
 
 PKG result
+PKG oUnit

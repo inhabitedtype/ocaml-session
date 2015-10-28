@@ -17,6 +17,19 @@ Library session
   BuildDepends:     result
   Modules:          Memory, S
 
+Executable test_memory_backend
+  Path:             lib_test
+  MainIs:           test_memory_backend.ml
+  Build$:           flag(tests)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     session, result, oUnit (>= 1.0.2)
+
+Test test_memory_backend
+  Run$:             flag(tests)
+  Command:          $test_memory_backend
+  WorkingDirectory: lib_test
+
 SourceRepository master
   Type:     git
   Location: https://github.com/inhabitedtype/ocaml-session.git

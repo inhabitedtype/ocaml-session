@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 595f17aead74c6810b134906c16ad5cf)
+# DO NOT EDIT (digest: 26160451216714e25bfe3c365d66c5d8)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -19,4 +19,11 @@ true: annot, bin_annot
 "lib/memory.cmx": for-pack(Session)
 "lib/s.cmx": for-pack(Session)
 <lib/*.ml{,i,y}>: pkg_result
+# Executable test_memory_backend
+<lib_test/test_memory_backend.{native,byte}>: pkg_oUnit
+<lib_test/test_memory_backend.{native,byte}>: pkg_result
+<lib_test/test_memory_backend.{native,byte}>: use_session
+<lib_test/*.ml{,i,y}>: pkg_oUnit
+<lib_test/*.ml{,i,y}>: pkg_result
+<lib_test/*.ml{,i,y}>: use_session
 # OASIS_STOP

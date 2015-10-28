@@ -60,9 +60,22 @@ Executable test_memory_backend
   Install:          false
   BuildDepends:     session, result, oUnit (>= 1.0.2)
 
+Executable test_postgresql_backend
+  Path:             lib_test
+  MainIs:           test_postgresql_backend.ml
+  Build$:           flag(tests)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     postgresql, session.postgresql, result, oUnit (>= 1.0.2)
+
 Test test_memory_backend
   Run$:             flag(tests)
   Command:          $test_memory_backend
+  WorkingDirectory: lib_test
+
+Test test_postgresql_backend
+  Run$:             flag(tests)
+  Command:          $test_postgresql_backend
   WorkingDirectory: lib_test
 
 SourceRepository master

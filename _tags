@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: fb26cd6df350523d6f5587ba5026b99d)
+# DO NOT EDIT (digest: 1aca5260497f5d276a2aaac29560ede3)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -36,7 +36,17 @@ true: annot, bin_annot
 <lib_test/test_memory_backend.{native,byte}>: pkg_oUnit
 <lib_test/test_memory_backend.{native,byte}>: pkg_result
 <lib_test/test_memory_backend.{native,byte}>: use_session
+# Executable test_postgresql_backend
+<lib_test/test_postgresql_backend.{native,byte}>: pkg_oUnit
+<lib_test/test_postgresql_backend.{native,byte}>: pkg_postgresql
+<lib_test/test_postgresql_backend.{native,byte}>: pkg_result
+<lib_test/test_postgresql_backend.{native,byte}>: pkg_threads
+<lib_test/test_postgresql_backend.{native,byte}>: use_session
+<lib_test/test_postgresql_backend.{native,byte}>: use_session_postgresql
 <lib_test/*.ml{,i,y}>: pkg_oUnit
+<lib_test/*.ml{,i,y}>: pkg_postgresql
 <lib_test/*.ml{,i,y}>: pkg_result
+<lib_test/*.ml{,i,y}>: pkg_threads
 <lib_test/*.ml{,i,y}>: use_session
+<lib_test/*.ml{,i,y}>: use_session_postgresql
 # OASIS_STOP

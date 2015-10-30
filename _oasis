@@ -18,6 +18,10 @@ Flag postgresql
   Description: build the postgresql library
   Default: false
 
+Flag cohttp
+  Description: build the cohttp libraries
+  Default: false
+
 Library session
   Path:             lib
   Findlibname:      session
@@ -51,6 +55,15 @@ Library session_postgresql_lwt
   Install$:         flag(postgresql) && flag(lwt)
   BuildDepends:     lwt, postgresql, result, session, threads
   Modules:          Session_postgresql_lwt
+
+Library session_cohttp
+  Path:             cohttp
+  Findlibname:      cohttp
+  Findlibparent:    session
+  Build$:           flag(cohttp)
+  Install$:         flag(cohttp)
+  BuildDepends:     cohttp, result, session
+  Modules:          Session_cohttp
 
 Document session
   Title:                A session manager for your everyday needs

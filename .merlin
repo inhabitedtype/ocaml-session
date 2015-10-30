@@ -2,4 +2,5 @@ S lib/**
 B _build/**
 
 PKG cstruct nocrypto result postgresql
+PKG cohttp
 PKG oUnit

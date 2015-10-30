@@ -10,6 +10,7 @@ bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
 build: [
   ["ocaml" "setup.ml" "-configure" "--prefix" prefix
     "--%{postgresql:enable}%-postgresql"
+    "--%{cohttp:enable}%-cohttp"
     "--%{async:enable}%-async"]
   ["ocaml" "setup.ml" "-build"]
 ]
@@ -20,6 +21,7 @@ remove: [
 build-test: [
   ["ocaml" "setup.ml" "-configure" "--enable-tests"
     "--%{postgresql:enable}%-postgresql"
+    "--%{cohttp:enable}%-cohttp"
     "--%{async:enable}%-async"]
   ["ocaml" "setup.ml" "-build"]
   ["ocaml" "setup.ml" "-test"]
@@ -34,6 +36,7 @@ depends: [
 depopts: [
   "async"
   "base-threads"
+  "cohttp"
   "lwt"
   "postgresql"
 ]

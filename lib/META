@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 2a371249a2b65e93cfd9c41a2338a055)
+# DO NOT EDIT (digest: 5e8a9637c9421f48ac5d7ba5b0f1fa42)
 version = "0.1.0"
 description = "A session manager for your everyday needs"
 requires = "nocrypto result"
@@ -39,6 +39,17 @@ package "postgresql" (
  archive(native) = "session_postgresql.cmxa"
  archive(native, plugin) = "session_postgresql.cmxs"
  exists_if = "session_postgresql.cma"
+)
+
+package "cohttp-lwt" (
+ version = "0.1.0"
+ description = "A session manager for your everyday needs"
+ requires = "cohttp.lwt lwt result session.cohttp"
+ archive(byte) = "session_cohttp_lwt.cma"
+ archive(byte, plugin) = "session_cohttp_lwt.cma"
+ archive(native) = "session_cohttp_lwt.cmxa"
+ archive(native, plugin) = "session_cohttp_lwt.cmxs"
+ exists_if = "session_cohttp_lwt.cma"
 )
 
 package "cohttp-async" (

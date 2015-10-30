@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 6daabc145732bf5928847f22493f4692) *)
+(* DO NOT EDIT (digest: 46dbaed50e3f538323e4a6ec42271fed) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -614,7 +614,8 @@ let package_default =
           ("session_postgresql_async", ["backends/postgresql"], []);
           ("session_postgresql_lwt", ["backends/postgresql"], []);
           ("session_cohttp", ["cohttp"], []);
-          ("session_cohttp_async", ["cohttp"], [])
+          ("session_cohttp_async", ["cohttp"], []);
+          ("session_cohttp_lwt", ["cohttp"], [])
        ];
      lib_c = [];
      flags = [];
@@ -631,6 +632,6 @@ let conf = {MyOCamlbuildFindlib.no_automatic_syntax = false}
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default conf package_default;;
 
-# 635 "myocamlbuild.ml"
+# 636 "myocamlbuild.ml"
 (* OASIS_STOP *)
 Ocamlbuild_plugin.dispatch dispatch_default;;

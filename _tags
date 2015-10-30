@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 10183d86533cb84ba446b28a747cc0c4)
+# DO NOT EDIT (digest: 281d68e8c300f58fc839e74fdbec299c)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -39,11 +39,15 @@ true: annot, bin_annot
 # Library session_cohttp_async
 "cohttp/session_cohttp_async.cmxs": use_session_cohttp_async
 <cohttp/*.ml{,i,y}>: pkg_async
-<cohttp/*.ml{,i,y}>: pkg_cohttp
 <cohttp/*.ml{,i,y}>: pkg_cohttp.async
+<cohttp/*.ml{,i,y}>: pkg_threads
+# Library session_cohttp_lwt
+"cohttp/session_cohttp_lwt.cmxs": use_session_cohttp_lwt
+<cohttp/*.ml{,i,y}>: pkg_cohttp
+<cohttp/*.ml{,i,y}>: pkg_cohttp.lwt
+<cohttp/*.ml{,i,y}>: pkg_lwt
 <cohttp/*.ml{,i,y}>: pkg_nocrypto
 <cohttp/*.ml{,i,y}>: pkg_result
-<cohttp/*.ml{,i,y}>: pkg_threads
 <cohttp/*.ml{,i,y}>: use_session
 <cohttp/*.ml{,i,y}>: use_session_cohttp
 # Executable test_memory_backend

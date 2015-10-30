@@ -22,6 +22,10 @@ Flag cohttp
   Description: build the cohttp libraries
   Default: false
 
+Flag async
+  Description: build the async libraries
+  Default: false
+
 Library session
   Path:             lib
   Findlibname:      session
@@ -64,6 +68,15 @@ Library session_cohttp
   Install$:         flag(cohttp)
   BuildDepends:     cohttp, result, session
   Modules:          Session_cohttp
+
+Library session_cohttp_async
+  Path:             cohttp
+  Findlibname:      cohttp-async
+  Findlibparent:    session
+  Build$:           flag(cohttp) && flag(async)
+  Install$:         flag(cohttp) && flag(async)
+  BuildDepends:     async, cohttp.async, result, session.cohttp, threads
+  Modules:          Session_cohttp_async
 
 Document session
   Title:                A session manager for your everyday needs

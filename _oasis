@@ -10,6 +10,10 @@ License:     BSD-3-clause
 Plugins:     META (0.4), DevFiles (0.4)
 BuildTools:  ocamlbuild
 
+Flag async
+  Description: build the Async libraries
+  Default: false
+
 Flag postgresql
   Description: build the postgresql library
   Default: false
@@ -29,6 +33,15 @@ Library session_postgresql
   Install$:         flag(postgresql)
   BuildDepends:     postgresql, result, session, threads
   Modules:          Session_postgresql
+
+Library session_postgresql_async
+  Path:             backends/postgresql
+  Findlibname:      postgresql-async
+  Findlibparent:    session
+  Build$:           flag(postgresql) && flag(async)
+  Install$:         flag(postgresql) && flag(async)
+  BuildDepends:     async, postgresql, result, session, threads
+  Modules:          Session_postgresql_async
 
 Executable test_memory_backend
   Path:             lib_test

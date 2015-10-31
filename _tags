@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 25ceee469db4b7e32ec76be349774b31)
+# DO NOT EDIT (digest: fdafd3038c41076c38f2a1c85031446f)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -22,6 +22,9 @@ true: annot, bin_annot
 <lib/*.ml{,i,y}>: pkg_result
 # Library session_postgresql
 "backends/postgresql/session_postgresql.cmxs": use_session_postgresql
+# Library session_postgresql_async
+"backends/postgresql/session_postgresql_async.cmxs": use_session_postgresql_async
+<backends/postgresql/*.ml{,i,y}>: pkg_async
 <backends/postgresql/*.ml{,i,y}>: pkg_postgresql
 <backends/postgresql/*.ml{,i,y}>: pkg_result
 <backends/postgresql/*.ml{,i,y}>: pkg_threads

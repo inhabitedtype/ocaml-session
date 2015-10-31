@@ -9,7 +9,8 @@ dev-repo: "https://github.com/inhabitedtype/ocaml-session.git"
 bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
 build: [
   ["ocaml" "setup.ml" "-configure" "--prefix" prefix
-    "--%{postgresql:enable}%-postgresql"]
+    "--%{postgresql:enable}%-postgresql"
+    "--%{async:enable}%-async"]
   ["ocaml" "setup.ml" "-build"]
 ]
 install: ["ocaml" "setup.ml" "-install"]
@@ -18,7 +19,8 @@ remove: [
 ]
 build-test: [
   ["ocaml" "setup.ml" "-configure" "--enable-tests"
-    "--%{postgresql:enable}%-postgresql"]
+    "--%{postgresql:enable}%-postgresql"
+    "--%{async:enable}%-async"]
   ["ocaml" "setup.ml" "-build"]
   ["ocaml" "setup.ml" "-test"]
 ]
@@ -28,6 +30,7 @@ depends: [
   "result"
 ]
 depopts: [
+  "async"
   "base-threads"
   "postgresql"
 ]

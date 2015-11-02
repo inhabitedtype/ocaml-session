@@ -22,7 +22,7 @@ Library session
   Path:             lib
   Findlibname:      session
   Pack:             true
-  BuildDepends:     result
+  BuildDepends:     nocrypto, result
   Modules:          Lift, Memory, S
 
 Library session_postgresql
@@ -31,7 +31,7 @@ Library session_postgresql
   Findlibparent:    session
   Build$:           flag(postgresql)
   Install$:         flag(postgresql)
-  BuildDepends:     postgresql, result, session, threads
+  BuildDepends:     nocrypto, postgresql, result, session, threads
   Modules:          Session_postgresql
 
 Library session_postgresql_async
@@ -66,7 +66,7 @@ Executable test_memory_backend
   Build$:           flag(tests)
   CompiledObject:   best
   Install:          false
-  BuildDepends:     session, result, oUnit (>= 1.0.2)
+  BuildDepends:     nocrypto.unix, session, result, oUnit (>= 1.0.2)
 
 Executable test_postgresql_backend
   Path:             lib_test
@@ -74,7 +74,7 @@ Executable test_postgresql_backend
   Build$:           flag(tests)
   CompiledObject:   best
   Install:          false
-  BuildDepends:     postgresql, session.postgresql, result, oUnit (>= 1.0.2)
+  BuildDepends:     nocrypto.unix, postgresql, session.postgresql, result, oUnit (>= 1.0.2)
 
 Test test_memory_backend
   Run$:             flag(tests)

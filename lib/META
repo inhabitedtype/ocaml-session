@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: 5719a7b10f5defa3211a70f2bd033f21)
+# DO NOT EDIT (digest: 812048b00b51a169e81df6ea66168942)
 version = "0.1.0"
 description = "A session manager for your everyday needs"
-requires = "result"
+requires = "nocrypto result"
 archive(byte) = "session.cma"
 archive(byte, plugin) = "session.cma"
 archive(native) = "session.cmxa"
@@ -33,7 +33,7 @@ package "postgresql-async" (
 package "postgresql" (
  version = "0.1.0"
  description = "A session manager for your everyday needs"
- requires = "postgresql result session threads"
+ requires = "nocrypto postgresql result session threads"
  archive(byte) = "session_postgresql.cma"
  archive(byte, plugin) = "session_postgresql.cma"
  archive(native) = "session_postgresql.cmxa"

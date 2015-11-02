@@ -15,4 +15,5 @@ let () =
     | Error e -> Some (Printf.sprintf "Postgresql.Error(%S)" (string_of_error e))
     | _ -> None
 
+let () = Nocrypto_entropy_unix.initialize ()
 module Test = Test_session.Make(Backend)

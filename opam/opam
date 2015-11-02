@@ -26,6 +26,7 @@ build-test: [
 ]
 build-doc: [ "ocaml" "setup.ml" "-doc" ]
 depends: [
+  "nocrypto"
   "ocamlfind" {build}
   "ounit" {test & >= "1.0.2"}
   "result"

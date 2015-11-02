@@ -33,12 +33,8 @@ let connect ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?require
   W.add _default_period_table { W.conn; period = _default_period };
   conn
 
-let gensym =
-  let index = ref 0 in
-  fun () ->
-    let idx = !index in
-    index := idx + 1;
-    "postgresql-key-insecure-" ^ (string_of_int idx)
+let gensym () =
+  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
 
 let now () =
   Int64.of_float (Unix.time ())

@@ -10,12 +10,8 @@ type t =
   { store : (key, session) Hashtbl.t
   ; mutable default_period : period }
 
-let gensym =
-  let index = ref 0 in
-  fun () ->
-    let idx = !index in
-    index := idx + 1;
-    "memory-key-insecure-" ^ (string_of_int idx)
+let gensym () =
+  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
 
 let create () =
   { store = Hashtbl.create 10

@@ -22,6 +22,10 @@ Flag cohttp
   Description: build the cohttp libraries
   Default: false
 
+Flag webmachine
+  Description: build the webmachine library
+  Default: false
+
 Flag async
   Description: build the async libraries
   Default: false
@@ -90,6 +94,15 @@ Library session_cohttp_lwt
   Install$:         flag(cohttp) && flag(lwt)
   BuildDepends:     cohttp.lwt, lwt, result, session.cohttp
   Modules:          Session_cohttp_lwt
+
+Library session_webmachine
+  Path:             webmachine
+  Findlibname:      webmachine
+  Findlibparent:    session
+  Build$:           flag(cohttp) && flag(webmachine)
+  Install$:         flag(cohttp) && flag(webmachine)
+  BuildDepends:     webmachine, result, session.cohttp
+  Modules:          Session_webmachine
 
 Document session
   Title:                A session manager for your everyday needs

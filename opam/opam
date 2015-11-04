@@ -9,6 +9,7 @@ dev-repo: "https://github.com/inhabitedtype/ocaml-session.git"
 bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
 build: [
   ["ocaml" "setup.ml" "-configure" "--prefix" prefix
+    "--%{webmachine:enable}%-webmachine"
     "--%{postgresql:enable}%-postgresql"
     "--%{lwt:enable}%-lwt"
     "--%{cohttp:enable}%-cohttp"
@@ -21,6 +22,7 @@ remove: [
 ]
 build-test: [
   ["ocaml" "setup.ml" "-configure" "--enable-tests"
+    "--%{webmachine:enable}%-webmachine"
     "--%{postgresql:enable}%-postgresql"
     "--%{lwt:enable}%-lwt"
     "--%{cohttp:enable}%-cohttp"
@@ -41,4 +43,5 @@ depopts: [
   "cohttp"
   "lwt"
   "postgresql"
+  "webmachine"
 ]

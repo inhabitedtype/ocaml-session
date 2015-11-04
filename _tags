@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 281d68e8c300f58fc839e74fdbec299c)
+# DO NOT EDIT (digest: ae1f3d5f1cb807e2e07b3b578d43b664)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -50,6 +50,14 @@ true: annot, bin_annot
 <cohttp/*.ml{,i,y}>: pkg_result
 <cohttp/*.ml{,i,y}>: use_session
 <cohttp/*.ml{,i,y}>: use_session_cohttp
+# Library session_webmachine
+"webmachine/session_webmachine.cmxs": use_session_webmachine
+<webmachine/*.ml{,i,y}>: pkg_cohttp
+<webmachine/*.ml{,i,y}>: pkg_nocrypto
+<webmachine/*.ml{,i,y}>: pkg_result
+<webmachine/*.ml{,i,y}>: pkg_webmachine
+<webmachine/*.ml{,i,y}>: use_session
+<webmachine/*.ml{,i,y}>: use_session_cohttp
 # Executable test_memory_backend
 <lib_test/test_memory_backend.{native,byte}>: pkg_nocrypto
 <lib_test/test_memory_backend.{native,byte}>: pkg_nocrypto.unix

@@ -45,3 +45,20 @@ val connect :
 val set_default_period : t -> period -> unit
 (** [set_default_period t period] sets the default expiry period of [t]. This
     will only affect future operations. *)
+
+
+(** PostgreSQL backend using the {!Session.S.Future} siganture with Aysnc,
+    together with connection pooling via a [Throttle] *)
+module Pool : sig
+  include Session.S.Future
+    with type key = string
+     and type value = string
+     and type period = int64
+
+  val of_throttle : Postgresql.connection Throttle.t -> t
+  (** Createa a connection pool from a connection throttle. *)
+
+  val set_default_period : t -> period -> unit
+  (** [set_default_period t period] sets the default expiry period of [t]. This
+      will only affect future operations. *)
+end

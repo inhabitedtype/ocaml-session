@@ -2,6 +2,10 @@ OASISFormat: 0.4
 Name:        session
 Version:     0.1.0
 Synopsis:    A session manager for your everyday needs
+Description: ocaml-session is an session manager that handles cookie headers
+  and backend storage for HTTP servers. The library supports CoHTTP and
+  Webmachine; Async and Lwt; and pluggable backing stores based on a functor
+  interface.
 Authors:     Spiros Eliopoulos <spiros@inhabitedtype.com>
 Maintainers: Spiros Eliopoulos <spiros@inhabitedtype.com>
 Homepage:    https://github.com/inhabitedtype/ocaml-session

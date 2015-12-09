@@ -43,6 +43,15 @@ Library session_postgresql_async
   BuildDepends:     async, postgresql, result, session, threads
   Modules:          Session_postgresql_async
 
+Library session_postgresql_lwt
+  Path:             backends/postgresql
+  Findlibname:      postgresql-lwt
+  Findlibparent:    session
+  Build$:           flag(postgresql) && flag(lwt)
+  Install$:         flag(postgresql) && flag(lwt)
+  BuildDepends:     lwt, postgresql, result, session, threads
+  Modules:          Session_postgresql_lwt
+
 Executable test_memory_backend
   Path:             lib_test
   MainIs:           test_memory_backend.ml

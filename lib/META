@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 558fb08883fe766339fc29a0013031cf)
+# DO NOT EDIT (digest: 5719a7b10f5defa3211a70f2bd033f21)
 version = "0.1.0"
 description = "A session manager for your everyday needs"
 requires = "result"
@@ -8,6 +8,17 @@ archive(byte, plugin) = "session.cma"
 archive(native) = "session.cmxa"
 archive(native, plugin) = "session.cmxs"
 exists_if = "session.cma"
+package "postgresql-lwt" (
+ version = "0.1.0"
+ description = "A session manager for your everyday needs"
+ requires = "lwt postgresql result session threads"
+ archive(byte) = "session_postgresql_lwt.cma"
+ archive(byte, plugin) = "session_postgresql_lwt.cma"
+ archive(native) = "session_postgresql_lwt.cmxa"
+ archive(native, plugin) = "session_postgresql_lwt.cmxs"
+ exists_if = "session_postgresql_lwt.cma"
+)
+
 package "postgresql-async" (
  version = "0.1.0"
  description = "A session manager for your everyday needs"

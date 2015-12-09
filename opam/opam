@@ -32,5 +32,6 @@ depends: [
 depopts: [
   "async"
   "base-threads"
+  "lwt"
   "postgresql"
 ]

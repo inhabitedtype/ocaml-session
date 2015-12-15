@@ -112,6 +112,38 @@ Document session
   XOCamlbuildPath:      lib
   XOCamlbuildLibraries: session
 
+Executable cohttp_lwt_counter
+  Path:             examples
+  MainIs:           cohttp_lwt_counter.ml
+  Build$:           flag(lwt) && flag(cohttp)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     nocrypto.unix, session.cohttp-lwt, result
+
+Executable cohttp_async_counter
+  Path:             examples
+  MainIs:           cohttp_async_counter.ml
+  Build$:           flag(async) && flag(cohttp)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     nocrypto.unix, session.cohttp-async, result, threads
+
+Executable webmachine_lwt_counter
+  Path:             examples
+  MainIs:           webmachine_lwt_counter.ml
+  Build$:           flag(lwt) && flag(webmachine)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     cohttp.lwt, nocrypto.unix, session.webmachine, result
+
+Executable webmachine_async_counter
+  Path:             examples
+  MainIs:           webmachine_async_counter.ml
+  Build$:           flag(async) && flag(webmachine)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     cohttp.async, nocrypto.unix, session.webmachine, result, threads
+
 Executable test_memory_backend
   Path:             lib_test
   MainIs:           test_memory_backend.ml

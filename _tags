@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: ae1f3d5f1cb807e2e07b3b578d43b664)
+# DO NOT EDIT (digest: b240bd446cc5cd867d5af4bf3c78f097)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -58,6 +58,63 @@ true: annot, bin_annot
 <webmachine/*.ml{,i,y}>: pkg_webmachine
 <webmachine/*.ml{,i,y}>: use_session
 <webmachine/*.ml{,i,y}>: use_session_cohttp
+# Executable cohttp_lwt_counter
+<examples/cohttp_lwt_counter.{native,byte}>: pkg_cohttp
+<examples/cohttp_lwt_counter.{native,byte}>: pkg_cohttp.lwt
+<examples/cohttp_lwt_counter.{native,byte}>: pkg_lwt
+<examples/cohttp_lwt_counter.{native,byte}>: pkg_nocrypto
+<examples/cohttp_lwt_counter.{native,byte}>: pkg_nocrypto.unix
+<examples/cohttp_lwt_counter.{native,byte}>: pkg_result
+<examples/cohttp_lwt_counter.{native,byte}>: use_session
+<examples/cohttp_lwt_counter.{native,byte}>: use_session_cohttp
+<examples/cohttp_lwt_counter.{native,byte}>: use_session_cohttp_lwt
+<examples/*.ml{,i,y}>: pkg_lwt
+<examples/*.ml{,i,y}>: use_session_cohttp_lwt
+# Executable cohttp_async_counter
+<examples/cohttp_async_counter.{native,byte}>: pkg_async
+<examples/cohttp_async_counter.{native,byte}>: pkg_cohttp
+<examples/cohttp_async_counter.{native,byte}>: pkg_cohttp.async
+<examples/cohttp_async_counter.{native,byte}>: pkg_nocrypto
+<examples/cohttp_async_counter.{native,byte}>: pkg_nocrypto.unix
+<examples/cohttp_async_counter.{native,byte}>: pkg_result
+<examples/cohttp_async_counter.{native,byte}>: pkg_threads
+<examples/cohttp_async_counter.{native,byte}>: use_session
+<examples/cohttp_async_counter.{native,byte}>: use_session_cohttp
+<examples/cohttp_async_counter.{native,byte}>: use_session_cohttp_async
+<examples/*.ml{,i,y}>: pkg_async
+<examples/*.ml{,i,y}>: use_session_cohttp_async
+# Executable webmachine_lwt_counter
+<examples/webmachine_lwt_counter.{native,byte}>: pkg_cohttp
+<examples/webmachine_lwt_counter.{native,byte}>: pkg_cohttp.lwt
+<examples/webmachine_lwt_counter.{native,byte}>: pkg_nocrypto
+<examples/webmachine_lwt_counter.{native,byte}>: pkg_nocrypto.unix
+<examples/webmachine_lwt_counter.{native,byte}>: pkg_result
+<examples/webmachine_lwt_counter.{native,byte}>: pkg_webmachine
+<examples/webmachine_lwt_counter.{native,byte}>: use_session
+<examples/webmachine_lwt_counter.{native,byte}>: use_session_cohttp
+<examples/webmachine_lwt_counter.{native,byte}>: use_session_webmachine
+<examples/*.ml{,i,y}>: pkg_cohttp.lwt
+# Executable webmachine_async_counter
+<examples/webmachine_async_counter.{native,byte}>: pkg_cohttp
+<examples/webmachine_async_counter.{native,byte}>: pkg_cohttp.async
+<examples/webmachine_async_counter.{native,byte}>: pkg_nocrypto
+<examples/webmachine_async_counter.{native,byte}>: pkg_nocrypto.unix
+<examples/webmachine_async_counter.{native,byte}>: pkg_result
+<examples/webmachine_async_counter.{native,byte}>: pkg_threads
+<examples/webmachine_async_counter.{native,byte}>: pkg_webmachine
+<examples/webmachine_async_counter.{native,byte}>: use_session
+<examples/webmachine_async_counter.{native,byte}>: use_session_cohttp
+<examples/webmachine_async_counter.{native,byte}>: use_session_webmachine
+<examples/*.ml{,i,y}>: pkg_cohttp
+<examples/*.ml{,i,y}>: pkg_cohttp.async
+<examples/*.ml{,i,y}>: pkg_nocrypto
+<examples/*.ml{,i,y}>: pkg_nocrypto.unix
+<examples/*.ml{,i,y}>: pkg_result
+<examples/*.ml{,i,y}>: pkg_threads
+<examples/*.ml{,i,y}>: pkg_webmachine
+<examples/*.ml{,i,y}>: use_session
+<examples/*.ml{,i,y}>: use_session_cohttp
+<examples/*.ml{,i,y}>: use_session_webmachine
 # Executable test_memory_backend
 <lib_test/test_memory_backend.{native,byte}>: pkg_nocrypto
 <lib_test/test_memory_backend.{native,byte}>: pkg_nocrypto.unix

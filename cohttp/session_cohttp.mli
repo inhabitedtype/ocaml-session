@@ -71,8 +71,9 @@ module type S = sig
       pattern-matched as usual. However, values of this type cannot be
       constructed directly. To create a new session, use {!generate}. To
       retrieve an existing [session], use {!of_key} or {!of_header}. To modify
-      {!expiry_period} or {!value}, use {!set}. Finally, use {!to_cookie_hdr}
-      to smartly generate [Set-Cookie] and related headers. *)
+      {!recfield:t.expiry_period} or {!recfield:t.value}, use {!set}. Finally,
+      use {!to_cookie_hdrs} to smartly generate [Set-Cookie] and related
+      headers. *)
 
   val of_key : backend -> key -> (t, Session.S.error) result io
   (** [of_key backend key] fetches the session associated with [key] from the
@@ -97,10 +98,10 @@ module type S = sig
     ?discard:bool -> ?path:string -> ?domain:string ->
     ?secure:bool -> ?http_only:bool ->
     string -> t -> (string * string) list
-  (** [to_cookie_hdr cookie_key session] will generate response
+  (** [to_cookie_hdrs cookie_key session] will generate response
       headers to communicate session changes to the client. This function takes
-      into account the {!modified} field of the {{!type:t}session} type, and
-      will not generate headers if they are not needed. *)
+      into account the {!recfield:t.modified} field of the {{!type:t}session}
+      type, and will not generate headers if they are not needed. *)
 
   val clear_hdrs :
     ?path:string -> ?domain:string ->
@@ -120,10 +121,10 @@ module type S = sig
       subsequent operations involving [key] should behave as if [key] is
       not present in the backend.
 
-      The {!value} and {!expiry_period} of [session] will be zero'd out, and the
-      {!modified} flag will be set. Calling {!to_cookie_hdr} on a cleared
-      session will generate the appropriate headers directing the client to
-      clear the associated cookie. *)
+      The {!value} and {!recfield:t.expiry_period} of [session] will be zero'd
+      out, and the {!recfield:t.modified} flag will be set. Calling
+      {!to_cookie_hdrs} on a cleared session will generate the appropriate
+      headers directing the client to clear the associated cookie. *)
 
   val set : ?expiry:period -> ?value:value -> backend -> t -> unit io
   (** [set ?expiry ?value backend session] sets the [value] for the session

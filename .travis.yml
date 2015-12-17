@@ -5,4 +5,3 @@ sudo: required
 env:
   - OCAML_VERSION=4.02 PACKAGE=session
   - OCAML_VERSION=4.01 PACKAGE=session
-  - OCAML_VERSION=4.00 PACKAGE=session

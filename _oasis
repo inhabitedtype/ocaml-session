@@ -159,7 +159,7 @@ Executable test_memory_backend
 Executable test_postgresql_backend
   Path:             lib_test
   MainIs:           test_postgresql_backend.ml
-  Build$:           flag(tests)
+  Build$:           flag(tests) && flag(postgresql)
   CompiledObject:   best
   Install:          false
   BuildDepends:     nocrypto.unix, postgresql, session.postgresql, result, oUnit (>= 1.0.2)
@@ -170,7 +170,7 @@ Test test_memory_backend
   WorkingDirectory: lib_test
 
 Test test_postgresql_backend
-  Run$:             flag(tests)
+  Run$:             flag(tests) && flag(postgresql)
   Command:          $test_postgresql_backend
   WorkingDirectory: lib_test
 

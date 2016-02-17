@@ -87,7 +87,7 @@ module type S = sig
       successful, then this function will return [Some session]. If no key was
       found in [header], it will return [None]. *)
 
-  val of_header_or_create : ?expiry:period -> backend -> string -> string -> Header.t -> t io
+  val of_header_or_create : ?expiry:period -> backend -> string -> value -> Header.t -> t io
   (** [of_header_or_create ?expiry backend cookie_key default header] retrieves
       the session key from the cookies in [header]. If [cookie_key] is not
       present in any cookies in the [header] or if the session is not a valid

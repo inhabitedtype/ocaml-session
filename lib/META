@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 9d76627f356b128c31975bd95e3b12c3)
+# DO NOT EDIT (digest: 352b89ede1144e92a1c0ce3d8eb8eb1b)
 version = "0.1.0"
 description = "A session manager for your everyday needs"
 requires = "nocrypto result"
@@ -22,7 +22,7 @@ package "webmachine" (
 package "postgresql-lwt" (
  version = "0.1.0"
  description = "A session manager for your everyday needs"
- requires = "lwt postgresql result session threads"
+ requires = "lwt postgresql result session.postgresql threads"
  archive(byte) = "session_postgresql_lwt.cma"
  archive(byte, plugin) = "session_postgresql_lwt.cma"
  archive(native) = "session_postgresql_lwt.cmxa"
@@ -33,7 +33,7 @@ package "postgresql-lwt" (
 package "postgresql-async" (
  version = "0.1.0"
  description = "A session manager for your everyday needs"
- requires = "async postgresql result session threads"
+ requires = "async postgresql result session.postgresql threads"
  archive(byte) = "session_postgresql_async.cma"
  archive(byte, plugin) = "session_postgresql_async.cma"
  archive(native) = "session_postgresql_async.cmxa"

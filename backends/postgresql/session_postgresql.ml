@@ -62,9 +62,7 @@ let _default_period_table =
   W.create 5
 
 let connect ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly () =
-  let conn = new connection ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly () in
-  W.add _default_period_table { W.conn; period = _default_period };
-  conn
+  new connection ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly ()
 
 let gensym () =
   Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
@@ -73,8 +71,10 @@ let now () =
   Int64.of_float (Unix.time ())
 
 let default_period t =
-  let w = W.find _default_period_table { W.conn = t; period = _default_period } in
-  w.W.period
+  try
+    let w = W.find _default_period_table { W.conn = t; period = _default_period } in
+    w.W.period
+  with Not_found -> _default_period
 
 let set_default_period t period =
   let w = W.find _default_period_table { W.conn = t; period } in

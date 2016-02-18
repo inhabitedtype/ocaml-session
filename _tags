@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: b240bd446cc5cd867d5af4bf3c78f097)
+# DO NOT EDIT (digest: 69ea7681f13c2d96b7fa9ad88790baa3)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -34,6 +34,7 @@ true: annot, bin_annot
 <backends/postgresql/*.ml{,i,y}>: pkg_result
 <backends/postgresql/*.ml{,i,y}>: pkg_threads
 <backends/postgresql/*.ml{,i,y}>: use_session
+<backends/postgresql/*.ml{,i,y}>: use_session_postgresql
 # Library session_cohttp
 "cohttp/session_cohttp.cmxs": use_session_cohttp
 # Library session_cohttp_async

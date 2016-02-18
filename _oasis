@@ -60,7 +60,7 @@ Library session_postgresql_async
   Findlibparent:    session
   Build$:           flag(postgresql) && flag(async)
   Install$:         flag(postgresql) && flag(async)
-  BuildDepends:     async, postgresql, result, session, threads
+  BuildDepends:     async, postgresql, result, session.postgresql, threads
   Modules:          Session_postgresql_async
 
 Library session_postgresql_lwt
@@ -69,7 +69,7 @@ Library session_postgresql_lwt
   Findlibparent:    session
   Build$:           flag(postgresql) && flag(lwt)
   Install$:         flag(postgresql) && flag(lwt)
-  BuildDepends:     lwt, postgresql, result, session, threads
+  BuildDepends:     lwt, postgresql, result, session.postgresql, threads
   Modules:          Session_postgresql_lwt
 
 Library session_cohttp

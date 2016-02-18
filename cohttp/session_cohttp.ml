@@ -57,7 +57,7 @@ module type S = sig
 
   val of_key : backend -> key -> (t, Session.S.error) result io
   val of_header : backend -> string -> Header.t -> (t option, Session.S.error) result io
-  val of_header_or_create : ?expiry:period -> backend -> string -> string -> Header.t -> t io
+  val of_header_or_create : ?expiry:period -> backend -> string -> value -> Header.t -> t io
   val to_cookie_hdrs :
     ?discard:bool -> ?path:string -> ?domain:string ->
     ?secure:bool -> ?http_only:bool ->

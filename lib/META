@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: eca34ddcaf6091f478095798fc8d3b60)
+# DO NOT EDIT (digest: 9d431e77730cd800289a5a0653632a35)
 version = "0.2.0"
 description = "A session manager for your everyday needs"
 requires = "nocrypto result"
@@ -17,6 +17,17 @@ package "webmachine" (
  archive(native) = "session_webmachine.cmxa"
  archive(native, plugin) = "session_webmachine.cmxs"
  exists_if = "session_webmachine.cma"
+)
+
+package "redis-lwt" (
+ version = "0.2.0"
+ description = "A session manager for your everyday needs"
+ requires = "lwt nocrypto redis.lwt result session"
+ archive(byte) = "session_redis_lwt.cma"
+ archive(byte, plugin) = "session_redis_lwt.cma"
+ archive(native) = "session_redis_lwt.cmxa"
+ archive(native, plugin) = "session_redis_lwt.cmxs"
+ exists_if = "session_redis_lwt.cma"
 )
 
 package "postgresql-lwt" (

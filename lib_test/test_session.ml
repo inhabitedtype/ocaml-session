@@ -8,6 +8,7 @@ module type Backend = sig
 
   val name : string
   val create : unit -> t
+  val expired : Session.S.error
 end
 
 module Make(B:Backend) = struct
@@ -80,7 +81,7 @@ module Make(B:Backend) = struct
     assert_equal ~msg:"getting a garbage key will produce a Not_found error"
       (Result.Error Session.S.Not_found) (get backend "asdfjk") ~printer;
     assert_equal ~msg:"getting an expired, unset session will produce an Expired error"
-      (Result.Error Session.S.Expired) (get backend key1) ~printer;
+      (Result.Error B.expired) (get backend key1) ~printer;
 
     let key2 = B.generate backend in
     assert_equal ~msg:"getting an unexpired, unset session will produce a Not_set error"
@@ -94,7 +95,7 @@ module Make(B:Backend) = struct
 
     let key3 = B.generate ~expiry:(-1000L) ~value:"data2" backend in
     assert_equal ~msg:"getting an expired, set key will produce an Expired error"
-      (Result.Error Session.S.Expired) (get backend key3) ~printer;
+      (Result.Error B.expired) (get backend key3) ~printer;
   ;;
 
   let rec was_successful =

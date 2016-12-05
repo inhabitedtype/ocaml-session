@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 69ea7681f13c2d96b7fa9ad88790baa3)
+# DO NOT EDIT (digest: 28efc58691448813d0bb9868503991be)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -21,6 +21,13 @@ true: annot, bin_annot
 "lib/s.cmx": for-pack(Session)
 <lib/*.ml{,i,y}>: pkg_nocrypto
 <lib/*.ml{,i,y}>: pkg_result
+# Library session_redis_lwt
+"backends/redis/session_redis_lwt.cmxs": use_session_redis_lwt
+<backends/redis/*.ml{,i,y}>: pkg_lwt
+<backends/redis/*.ml{,i,y}>: pkg_nocrypto
+<backends/redis/*.ml{,i,y}>: pkg_redis.lwt
+<backends/redis/*.ml{,i,y}>: pkg_result
+<backends/redis/*.ml{,i,y}>: use_session
 # Library session_postgresql
 "backends/postgresql/session_postgresql.cmxs": use_session_postgresql
 # Library session_postgresql_async
@@ -131,12 +138,28 @@ true: annot, bin_annot
 <lib_test/test_postgresql_backend.{native,byte}>: pkg_threads
 <lib_test/test_postgresql_backend.{native,byte}>: use_session
 <lib_test/test_postgresql_backend.{native,byte}>: use_session_postgresql
+<lib_test/*.ml{,i,y}>: pkg_postgresql
+<lib_test/*.ml{,i,y}>: pkg_threads
+<lib_test/*.ml{,i,y}>: use_session_postgresql
+# Executable test_redis_backend
+<lib_test/test_redis_backend.{native,byte}>: pkg_lwt
+<lib_test/test_redis_backend.{native,byte}>: pkg_lwt.unix
+<lib_test/test_redis_backend.{native,byte}>: pkg_nocrypto
+<lib_test/test_redis_backend.{native,byte}>: pkg_nocrypto.unix
+<lib_test/test_redis_backend.{native,byte}>: pkg_oUnit
+<lib_test/test_redis_backend.{native,byte}>: pkg_redis
+<lib_test/test_redis_backend.{native,byte}>: pkg_redis.lwt
+<lib_test/test_redis_backend.{native,byte}>: pkg_result
+<lib_test/test_redis_backend.{native,byte}>: use_session
+<lib_test/test_redis_backend.{native,byte}>: use_session_redis_lwt
+<lib_test/*.ml{,i,y}>: pkg_lwt
+<lib_test/*.ml{,i,y}>: pkg_lwt.unix
 <lib_test/*.ml{,i,y}>: pkg_nocrypto
 <lib_test/*.ml{,i,y}>: pkg_nocrypto.unix
 <lib_test/*.ml{,i,y}>: pkg_oUnit
-<lib_test/*.ml{,i,y}>: pkg_postgresql
+<lib_test/*.ml{,i,y}>: pkg_redis
+<lib_test/*.ml{,i,y}>: pkg_redis.lwt
 <lib_test/*.ml{,i,y}>: pkg_result
-<lib_test/*.ml{,i,y}>: pkg_threads
 <lib_test/*.ml{,i,y}>: use_session
-<lib_test/*.ml{,i,y}>: use_session_postgresql
+<lib_test/*.ml{,i,y}>: use_session_redis_lwt
 # OASIS_STOP

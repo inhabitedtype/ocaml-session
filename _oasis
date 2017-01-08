@@ -22,6 +22,14 @@ Flag postgresql
   Description: build the postgresql library
   Default: false
 
+Flag redis
+  Description: build the redis library
+  Default: false
+
+Flag redis_tests
+  Description: test the redis library against a localhost Redis instance
+  Default: false
+
 Flag cohttp
   Description: build the cohttp libraries
   Default: false
@@ -44,6 +52,15 @@ Library session
   Pack:             true
   BuildDepends:     nocrypto, result
   Modules:          Lift, Memory, S
+
+Library session_redis_lwt
+  Path:             backends/redis
+  Findlibname:      redis-lwt
+  Findlibparent:    session
+  Build$:           flag(redis)
+  Install$:         flag(redis)
+  BuildDepends:     lwt, nocrypto, redis.lwt, result, session
+  Modules:          Session_redis_lwt
 
 Library session_postgresql
   Path:             backends/postgresql
@@ -164,6 +181,14 @@ Executable test_postgresql_backend
   Install:          false
   BuildDepends:     nocrypto.unix, postgresql, session.postgresql, result, oUnit (>= 1.0.2)
 
+Executable test_redis_backend
+  Path:             lib_test
+  MainIs:           test_redis_backend.ml
+  Build$:           flag(tests) && flag(redis)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     lwt.unix, nocrypto.unix, redis, session.redis-lwt, result, oUnit (>= 1.0.2)
+
 Test test_memory_backend
   Run$:             flag(tests)
   Command:          $test_memory_backend
@@ -172,6 +197,11 @@ Test test_memory_backend
 Test test_postgresql_backend
   Run$:             flag(tests) && flag(postgresql)
   Command:          $test_postgresql_backend
+  WorkingDirectory: lib_test
+
+Test test_redis_backend
+  Run$:             flag(tests) && flag(redis_tests)
+  Command:          $test_redis_backend
   WorkingDirectory: lib_test
 
 SourceRepository master

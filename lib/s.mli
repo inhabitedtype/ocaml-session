@@ -43,7 +43,6 @@ open Result
 type error =
   | Not_found   (** The key was not found. *)
   | Not_set     (** The key was found but had no associated value. *)
-  | Expired     (** The key has expired. It may still be in the backend. *)
 
 (** The signature for synchronous backends.
 

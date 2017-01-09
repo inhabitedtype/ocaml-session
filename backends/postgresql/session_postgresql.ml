@@ -103,7 +103,7 @@ let get (t:t) key =
     let expiry = Scanf.sscanf (result#getvalue 0 0) "%Ld" (fun x -> x) in
     let period = Int64.(sub expiry (now ())) in
     if Int64.compare period 0L < 0 then
-      Result.Error Session.S.Expired
+      Result.Error Session.S.Not_found
     else if result#getvalue 0 1 = null then
       Result.Error Session.S.Not_set
     else

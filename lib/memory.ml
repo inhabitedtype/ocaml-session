@@ -68,7 +68,7 @@ let get t key =
     let result = Hashtbl.find t.store key in
     let period = Int64.(sub result.expiry (now ())) in
     if Int64.compare period 0L < 0 then
-      Result.Error S.Expired
+      Result.Error S.Not_found
     else match result.value with
     | None       -> Result.Error S.Not_set
     | Some value -> Result.Ok(value, period)

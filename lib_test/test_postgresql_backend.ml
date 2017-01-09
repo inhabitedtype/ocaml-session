@@ -7,8 +7,6 @@ module Backend = struct
     let open Postgresql in
     ignore (t#exec ~expect:[Command_ok] "DELETE FROM session");
     t
-
-  let expired = Session.S.Expired
 end
 
 let () =

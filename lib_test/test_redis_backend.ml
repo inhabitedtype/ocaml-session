@@ -30,8 +30,6 @@ module Backend = struct
 
   let set ?expiry t key value =
     Lwt_main.run (C.set ?expiry t key value)
-
-  let expired = Session.S.Not_found
 end
 
 let () = Nocrypto_entropy_unix.initialize ()

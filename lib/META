@@ -1,6 +1,6 @@
 # OASIS_START
-# DO NOT EDIT (digest: 9d431e77730cd800289a5a0653632a35)
-version = "0.2.0"
+# DO NOT EDIT (digest: 5dce15a72fab09731dbecbf1e4112cab)
+version = "dev"
 description = "A session manager for your everyday needs"
 requires = "nocrypto result"
 archive(byte) = "session.cma"
@@ -9,7 +9,7 @@ archive(native) = "session.cmxa"
 archive(native, plugin) = "session.cmxs"
 exists_if = "session.cma"
 package "webmachine" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "webmachine result session.cohttp"
  archive(byte) = "session_webmachine.cma"
@@ -20,7 +20,7 @@ package "webmachine" (
 )
 
 package "redis-lwt" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "lwt nocrypto redis.lwt result session"
  archive(byte) = "session_redis_lwt.cma"
@@ -31,7 +31,7 @@ package "redis-lwt" (
 )
 
 package "postgresql-lwt" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "lwt postgresql result session.postgresql threads"
  archive(byte) = "session_postgresql_lwt.cma"
@@ -42,7 +42,7 @@ package "postgresql-lwt" (
 )
 
 package "postgresql-async" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "async postgresql result session.postgresql threads"
  archive(byte) = "session_postgresql_async.cma"
@@ -53,7 +53,7 @@ package "postgresql-async" (
 )
 
 package "postgresql" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "nocrypto postgresql result session threads"
  archive(byte) = "session_postgresql.cma"
@@ -64,7 +64,7 @@ package "postgresql" (
 )
 
 package "cohttp-lwt" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "cohttp.lwt lwt result session.cohttp"
  archive(byte) = "session_cohttp_lwt.cma"
@@ -75,7 +75,7 @@ package "cohttp-lwt" (
 )
 
 package "cohttp-async" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "async cohttp.async result session.cohttp threads"
  archive(byte) = "session_cohttp_async.cma"
@@ -86,7 +86,7 @@ package "cohttp-async" (
 )
 
 package "cohttp" (
- version = "0.2.0"
+ version = "dev"
  description = "A session manager for your everyday needs"
  requires = "cohttp result session"
  archive(byte) = "session_cohttp.cma"

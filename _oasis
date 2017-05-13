@@ -59,7 +59,7 @@ Library session_redis_lwt
   Findlibparent:    session
   Build$:           flag(redis)
   Install$:         flag(redis)
-  BuildDepends:     lwt, nocrypto, redis.lwt, result, session
+  BuildDepends:     lwt, nocrypto, redis-lwt, result, session
   Modules:          Session_redis_lwt
 
 Library session_postgresql

@@ -52,6 +52,7 @@ depopts: [
   #     ("redis-lwt" | ("redis" & "lwt"))
   #     ...
   #   ]
+  "lwt"
   "redis-lwt"
   "webmachine"
 ]

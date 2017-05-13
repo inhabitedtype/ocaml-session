@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 28efc58691448813d0bb9868503991be)
+# DO NOT EDIT (digest: 8e23d8fd7c085387a4e2cedad3a438b4)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -25,7 +25,7 @@ true: annot, bin_annot
 "backends/redis/session_redis_lwt.cmxs": use_session_redis_lwt
 <backends/redis/*.ml{,i,y}>: pkg_lwt
 <backends/redis/*.ml{,i,y}>: pkg_nocrypto
-<backends/redis/*.ml{,i,y}>: pkg_redis.lwt
+<backends/redis/*.ml{,i,y}>: pkg_redis-lwt
 <backends/redis/*.ml{,i,y}>: pkg_result
 <backends/redis/*.ml{,i,y}>: use_session
 # Library session_postgresql
@@ -148,7 +148,7 @@ true: annot, bin_annot
 <lib_test/test_redis_backend.{native,byte}>: pkg_nocrypto.unix
 <lib_test/test_redis_backend.{native,byte}>: pkg_oUnit
 <lib_test/test_redis_backend.{native,byte}>: pkg_redis
-<lib_test/test_redis_backend.{native,byte}>: pkg_redis.lwt
+<lib_test/test_redis_backend.{native,byte}>: pkg_redis-lwt
 <lib_test/test_redis_backend.{native,byte}>: pkg_result
 <lib_test/test_redis_backend.{native,byte}>: use_session
 <lib_test/test_redis_backend.{native,byte}>: use_session_redis_lwt
@@ -158,7 +158,7 @@ true: annot, bin_annot
 <lib_test/*.ml{,i,y}>: pkg_nocrypto.unix
 <lib_test/*.ml{,i,y}>: pkg_oUnit
 <lib_test/*.ml{,i,y}>: pkg_redis
-<lib_test/*.ml{,i,y}>: pkg_redis.lwt
+<lib_test/*.ml{,i,y}>: pkg_redis-lwt
 <lib_test/*.ml{,i,y}>: pkg_result
 <lib_test/*.ml{,i,y}>: use_session
 <lib_test/*.ml{,i,y}>: use_session_redis_lwt

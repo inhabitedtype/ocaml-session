@@ -57,8 +57,8 @@ Library session_redis_lwt
   Path:             backends/redis
   Findlibname:      redis-lwt
   Findlibparent:    session
-  Build$:           flag(redis)
-  Install$:         flag(redis)
+  Build$:           flag(redis) && flag(lwt)
+  Install$:         flag(redis) && flag(lwt)
   BuildDepends:     lwt, nocrypto, redis-lwt, result, session
   Modules:          Session_redis_lwt
 

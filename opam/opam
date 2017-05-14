@@ -10,7 +10,7 @@ build: [
   ["ocaml" "setup.ml" "-configure" "--prefix" prefix
     "--%{webmachine:enable}%-webmachine"
     "--%{postgresql:enable}%-postgresql"
-    "--%{redis:enable}%-redis"
+    "--%{redis-lwt:enable}%-redis"
     "--%{lwt:enable}%-lwt"
     "--%{cohttp:enable}%-cohttp"
     "--%{async:enable}%-async"]
@@ -24,7 +24,7 @@ build-test: [
   ["ocaml" "setup.ml" "-configure" "--enable-tests"
     "--%{webmachine:enable}%-webmachine"
     "--%{postgresql:enable}%-postgresql"
-    "--%{redis:enable}%-redis"
+    "--%{redis-lwt:enable}%-redis"
     "--%{lwt:enable}%-lwt"
     "--%{cohttp:enable}%-cohttp"
     "--%{async:enable}%-async"]

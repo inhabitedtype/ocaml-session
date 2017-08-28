@@ -1,6 +1,0 @@
-S lib/**
-B _build/**
-
-PKG cstruct nocrypto result postgresql redis lwt
-PKG cohttp webmachine
-PKG oUnit

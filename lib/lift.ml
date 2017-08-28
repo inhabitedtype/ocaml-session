@@ -36,13 +36,6 @@ module Ident = struct
 
   let return x = x
   let (>>=) m f = f m
-  let (>>|) m f = f m
-
-  let (>>=?) m f =
-    match m with
-    | Result.Ok x      -> f x
-    | Result.Error err -> Result.Error err
-
   let run x = x
 end
 

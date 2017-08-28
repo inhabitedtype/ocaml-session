@@ -1,0 +1,6 @@
+(jbuild_version 1)
+
+(library
+  ((name        session_postgresql)
+   (public_name session-postgresql)
+   (libraries   (nocrypto postgresql result session threads))))

@@ -19,3 +19,5 @@ depends: [
   "result"
   "ounit" {test & >= "1.0.2"}
 ]
+
+available: [ocaml-version >= "4.03.0"]

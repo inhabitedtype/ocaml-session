@@ -27,7 +27,7 @@ class counter backend = object(self)
     self#increment session rd >>= fun () ->
       continue (`String session.Session.value) rd
 
-  method allowed_methods rd =
+  method! allowed_methods rd =
     continue [`GET] rd
 
   method content_types_accepted rd =
@@ -38,7 +38,7 @@ class counter backend = object(self)
       "text/plain", self#to_plain
     ] rd
 
-  method finish_request rd =
+  method! finish_request rd =
     let rd = self#session_set_hdrs rd in
     continue () rd
 end
@@ -50,13 +50,13 @@ let main () =
     "/*", fun () -> new counter mem
   ] in
   let dispatch = dispatch' routes in
-  let callback conn request body =
+  let callback _conn request body =
     dispatch ~body ~request
     >|= begin function
       | None        -> (`Not_found, Cohttp.Header.init (), `String "Not found", [])
       | Some result -> result
     end
-    >>= fun (status, headers, body, _) ->
+    >>= fun (_status, headers, body, _) ->
       Server.respond ~headers ~body ~status:`OK ()
   in
   let config = Server.make ~callback () in

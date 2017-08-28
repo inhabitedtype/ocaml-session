@@ -28,7 +28,7 @@ class counter backend = object(self)
     self#increment session rd >>= fun () ->
       continue (`String session.Session.value) rd
 
-  method allowed_methods rd =
+  method! allowed_methods rd =
     continue [`GET] rd
 
   method content_types_accepted rd =
@@ -39,7 +39,7 @@ class counter backend = object(self)
       "text/plain", self#to_plain
     ] rd
 
-  method finish_request rd =
+  method! finish_request rd =
     let rd = self#session_set_hdrs rd in
     continue () rd
 end
@@ -57,11 +57,11 @@ let main () =
       | None        -> (`Not_found, Cohttp.Header.init (), `String "Not found", [])
       | Some result -> result
     end
-    >>= fun (status, headers, body, _) ->
+    >>= fun (_status, headers, body, _) ->
       Server.respond ~headers ~body `OK
   in
   Server.create ~on_handler_error:`Raise (Tcp.on_port port) handler
-  >>> fun server ->
+  >>> fun _server ->
     Log.Global.info "webmachine_async_counter: listening on 0.0.0.0:%d%!" port
 
 let _ =

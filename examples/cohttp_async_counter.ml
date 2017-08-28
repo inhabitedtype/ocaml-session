@@ -1,4 +1,4 @@
-open Async.Std
+open Async
 
 module Session = struct
   module Backend = struct
@@ -19,7 +19,7 @@ let cookie = "__counter_session"
 let main () =
   let port = 8080 in
   let mem = Session.Backend.create () in
-  let handler ~body _ { Request.headers } =
+  let handler ~body:_ _ { Request.headers; _ } =
     Session.of_header_or_create mem cookie "0" headers >>= fun session ->
     Session.increment mem session >>= fun () ->
     let headers = Cohttp.Header.of_list (Session.to_cookie_hdrs cookie session)
@@ -27,7 +27,7 @@ let main () =
     Server.respond ~headers ~body `OK
   in
   Server.create ~on_handler_error:`Raise (Tcp.on_port port) handler
-  >>> fun server ->
+  >>> fun _server ->
     Log.Global.info "cohttp_async_counter: listening on 0.0.0.0:%d%!" port
 
 let _ =

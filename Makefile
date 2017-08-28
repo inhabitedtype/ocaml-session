@@ -7,7 +7,7 @@ test:
 	jbuilder runtest --dev
 
 examples:
-	jbuilder build @examples/all
+	jbuilder build --dev @examples/all
 
 clean:
 	jbuilder clean

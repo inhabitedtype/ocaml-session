@@ -1,4 +1,4 @@
-open Async.Std
+open Async
 
 module Session = struct
   module Backend = struct
@@ -11,7 +11,7 @@ end
 let cookie_key = "__counter_session"
 
 module Rd = Webmachine.Rd
-include Webmachine.Make(Cohttp_async_io)
+include Webmachine.Make(Cohttp_async.Io)
 
 open Cohttp_async
 

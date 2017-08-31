@@ -1,0 +1,6 @@
+(jbuild_version 1)
+
+(library
+  ((name        session_redis_lwt)
+   (public_name session-redis-lwt)
+   (libraries   (lwt nocrypto redis-lwt result session))))

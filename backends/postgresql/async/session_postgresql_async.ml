@@ -31,62 +31,67 @@
     POSSIBILITY OF SUCH DAMAGE.
   ----------------------------------------------------------------------------*)
 
-type key = string
-type value = string
-type period = int64
+open Async
 
-type session =
-  { value : value option
-  ; expiry : period }
+include Session.Lift.Thread_IO(struct
+  include Deferred
 
-type t =
-  { store : (key, session) Hashtbl.t
-  ; mutable default_period : period }
+  let in_thread f = In_thread.run f
+end)(Session_postgresql)
 
-let gensym () =
-  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
 
-let create () =
-  { store = Hashtbl.create 10
-    (* One week. If this changes, change module documentation. *)
-  ; default_period = Int64.of_int (60 * 60 * 24 * 7) }
-
-let now () =
-  Int64.of_float (Unix.time ())
-
-let default_period t =
-  t.default_period
+let connect
+    ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl
+    ?conninfo ?startonly () =
+  In_thread.run (fun () ->
+    Session_postgresql.connect
+       ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl
+       ?conninfo ?startonly ())
 
 let set_default_period t period =
-  t.default_period <- period
+  Session_postgresql.set_default_period t period
 
-let clear t key =
-  Hashtbl.remove t.store key
+module Pool = struct
+  type +'a io = 'a Deferred.t
 
-let get t key =
-  try
-    let result = Hashtbl.find t.store key in
-    let period = Int64.(sub result.expiry (now ())) in
-    if Int64.compare period 0L < 0 then
-      Error S.Not_found
-    else match result.value with
-    | None       -> Error S.Not_set
-    | Some value -> Ok(value, period)
-  with Not_found -> Error S.Not_found
+  type t =
+    { pool : Postgresql.connection Throttle.t
+    ; mutable default_period : period
+    }
 
-let _set ?expiry ?value t key =
-  let expiry =
-    match expiry with
-    | None        -> Int64.(add (now ()) (default_period t))
-    | Some expiry -> Int64.(add (now ()) expiry)
-  in
-  let session = { expiry; value } in
-  Hashtbl.replace t.store key session
+  type key = string
+  type value = string
+  type period = int64
 
-let set ?expiry t key value =
-  _set ?expiry ~value t key
+  let __de_default t = function
+    | None        -> t.default_period
+    | Some expiry -> expiry
 
-let generate ?expiry ?value t =
-  let key = gensym () in
-  _set ?expiry ?value t key;
-  key
+  let generate ?expiry ?value t =
+    Throttle.enqueue t.pool (fun conn ->
+      let expiry = __de_default t expiry in
+      generate ~expiry ?value conn)
+
+  let clear t key =
+    Throttle.enqueue t.pool (fun conn ->
+      clear conn key)
+
+  let get t key =
+    Throttle.enqueue t.pool (fun conn ->
+      get conn key)
+
+  let set ?expiry t key value =
+    Throttle.enqueue t.pool (fun conn ->
+      let expiry = __de_default t expiry in
+      set ~expiry conn key value)
+
+  let default_period { default_period; _ } =
+    default_period
+
+  let set_default_period t period =
+    t.default_period <- period
+
+  let of_throttle pool =
+    { pool; default_period = Int64.of_int (60 * 60 * 24 * 7) }
+
+end

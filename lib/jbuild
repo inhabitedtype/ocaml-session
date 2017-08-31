@@ -1,0 +1,6 @@
+(jbuild_version 1)
+
+(library
+  ((name        session)
+   (public_name session)
+   (libraries   (nocrypto result))))

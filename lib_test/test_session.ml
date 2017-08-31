@@ -21,17 +21,17 @@ module Make(B:Backend) = struct
     | Session.S.Not_set   -> "Not_set"
 
   let from_ok = function
-    | Result.Ok x      -> x
-    | Result.Error err -> assert false
+    | Ok x       -> x
+    | Error _err -> assert false
 
   let (>>|?) m f =
     match m with
-    | Result.Ok x      -> Result.Ok (f x)
-    | Result.Error err -> Result.Error err
+    | Ok x      -> Ok (f x)
+    | Error err -> Error err
 
   let result_to_string ~f = function
-    | Result.Ok x      -> Printf.sprintf "Ok(%s)" (f x)
-    | Result.Error err -> Printf.sprintf "Error(%s)" (err_to_string err)
+    | Ok x      -> Printf.sprintf "Ok(%s)" (f x)
+    | Error err -> Printf.sprintf "Error(%s)" (err_to_string err)
 
   let generate () =
     let backend = B.create () in
@@ -77,23 +77,23 @@ module Make(B:Backend) = struct
     let backend = B.create () in
     let key1 = B.generate ~expiry:(-10L) backend in
     assert_equal ~msg:"getting a garbage key will produce a Not_found error"
-      (Result.Error Session.S.Not_found) (get backend "asdfjk") ~printer;
+      (Error Session.S.Not_found) (get backend "asdfjk") ~printer;
     assert_equal ~msg:"getting an expired, unset session will produce a Not_found error"
-      (Result.Error Session.S.Not_found) (get backend key1) ~printer;
+      (Error Session.S.Not_found) (get backend key1) ~printer;
 
     let key2 = B.generate backend in
     assert_equal ~msg:"getting an unexpired, unset session will produce a Not_set error"
-      (Result.Error Session.S.Not_set) (get backend key2) ~printer;
+      (Error Session.S.Not_set) (get backend key2) ~printer;
     B.set backend key2 "data2";
     assert_equal ~msg:"getting a session value just after setting returns the same value"
-      (Result.Ok "data2") (get backend key2) ~printer;
+      (Ok "data2") (get backend key2) ~printer;
     B.clear backend key2;
     assert_equal ~msg:"getting a cleared key will produce a Not_found error"
-      (Result.Error Session.S.Not_found) (get backend key2) ~printer;
+      (Error Session.S.Not_found) (get backend key2) ~printer;
 
     let key3 = B.generate ~expiry:(-1000L) ~value:"data2" backend in
     assert_equal ~msg:"getting an expired, set key will produce a Not_found error"
-      (Result.Error Session.S.Not_found) (get backend key3) ~printer;
+      (Error Session.S.Not_found) (get backend key3) ~printer;
   ;;
 
   let rec was_successful =

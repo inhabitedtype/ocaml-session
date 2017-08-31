@@ -1,7 +1,9 @@
-.PHONY: all test clean examples
+.PHONY: all build test clean examples
 
-all:
-	jbuilder build --dev
+build:
+	jbuilder build @install
+
+all: build
 
 test:
 	jbuilder runtest --dev

@@ -1,7 +1,7 @@
 .PHONY: all build test clean examples
 
 build:
-	jbuilder build @install
+	jbuilder build --dev @install
 
 all: build
 

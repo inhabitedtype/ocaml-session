@@ -1,0 +1,10 @@
+(executable
+ (name test)
+ (libraries session_test session-postgresql nocrypto.unix))
+
+(alias
+ (name runtest)
+ (package session-postgresql)
+ (deps test.exe)
+ (action
+  (run %{exe:test.exe})))

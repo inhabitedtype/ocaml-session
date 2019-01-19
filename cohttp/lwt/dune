@@ -1,0 +1,4 @@
+(library
+ (name session_cohttp_lwt)
+ (public_name session-cohttp-lwt)
+ (libraries cohttp-lwt lwt result session-cohttp))

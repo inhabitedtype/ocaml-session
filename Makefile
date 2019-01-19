@@ -1,15 +1,18 @@
-.PHONY: all build test clean examples
+.PHONY: all build test clean examples doc
 
 build:
-	jbuilder build --dev @install
+	dune build
 
 all: build
 
 test:
-	jbuilder runtest --dev
+	dune runtest
 
 examples:
-	jbuilder build --dev @examples/all
+	dune build @examples/all
 
 clean:
-	jbuilder clean
+	dune clean
+
+doc:
+	dune build @doc

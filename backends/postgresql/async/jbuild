@@ -1,6 +1,0 @@
-(jbuild_version 1)
-
-(library
-  ((name        session_postgresql_async)
-   (public_name session-postgresql-async)
-   (libraries   (async postgresql result session-postgresql threads))))

@@ -1,0 +1,4 @@
+(library
+ (name session_webmachine)
+ (public_name session-webmachine)
+ (libraries webmachine result session-cohttp))

@@ -5,6 +5,7 @@ authors: "Spiros Eliopoulos <spiros@inhabitedtype.com>"
 license: "BSD-3-clause"
 homepage: "https://github.com/inhabitedtype/ocaml-session"
 bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
+doc: "https://inhabitedtype.github.io/ocaml-session/"
 depends: [
   "ocaml"
   "dune" {build & >= "1.0"}

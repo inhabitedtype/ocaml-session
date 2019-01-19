@@ -1,21 +1,21 @@
-opam-version: "1.2"
+opam-version: "2.0"
 name: "session-cohttp-async"
 maintainer: "Spiros Eliopoulos <spiros@inhabitedtype.com>"
-authors: [ "Spiros Eliopoulos <spiros@inhabitedtype.com>" ]
+authors: "Spiros Eliopoulos <spiros@inhabitedtype.com>"
 license: "BSD-3-clause"
 homepage: "https://github.com/inhabitedtype/ocaml-session"
-dev-repo: "https://github.com/inhabitedtype/ocaml-session.git"
 bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
-
-build: [
-  ["dune" "subst"] {pinned}
-  ["dune" "build" "-p" name "-j" jobs]
-]
-
 depends: [
+  "ocaml"
   "dune" {build & >= "1.0"}
   "session-cohttp"
   "cohttp-async"
   "async"
   "base-threads"
 ]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+]
+dev-repo: "git+https://github.com/inhabitedtype/ocaml-session.git"
+synopsis: "A session manager for your everyday needs - Cohttp-specific support for Async"

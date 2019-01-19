@@ -8,13 +8,13 @@ dev-repo: "https://github.com/inhabitedtype/ocaml-session.git"
 bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
 
 build: [
-  ["jbuilder" "subst"] {pinned}
-  ["jbuilder" "build" "-p" name]
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
 ]
-build-test: ["jbuilder" "runtest" "-p" name]
+build-test: ["dune" "runtest" "-p" name "-j" jobs]
 
 depends: [
-  "jbuilder" {build & >= "1.0+beta9"}
+  "dune" {build & >= "1.0"}
   "nocrypto"
   "result"
   "ounit" {test & >= "1.0.2"}

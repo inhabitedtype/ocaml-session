@@ -1,6 +1,0 @@
-(jbuild_version 1)
-
-(library
-  ((name        session_cohttp)
-   (public_name session-cohttp)
-   (libraries   (cohttp result session))))

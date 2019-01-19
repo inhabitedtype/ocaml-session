@@ -1,0 +1,4 @@
+(library
+ (name session_cohttp_async)
+ (public_name session-cohttp-async)
+ (libraries async cohttp-async result session-cohttp threads))

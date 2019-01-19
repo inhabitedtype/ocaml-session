@@ -1,0 +1,10 @@
+(executable
+ (name test)
+ (libraries session_test session-redis-lwt nocrypto.unix))
+
+(alias
+ (name runtest)
+ (package session-redis-lwt)
+ (deps test.exe)
+ (action
+  (run %{exe:test.exe})))

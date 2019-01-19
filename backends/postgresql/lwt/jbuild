@@ -1,6 +1,0 @@
-(jbuild_version 1)
-
-(library
-  ((name        session_postgresql_lwt)
-   (public_name session-postgresql-lwt)
-   (libraries   (lwt lwt.unix postgresql result session-postgresql threads))))

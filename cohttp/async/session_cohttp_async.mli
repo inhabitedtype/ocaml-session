@@ -3,7 +3,7 @@
 open Async_kernel
 open Session_cohttp
 
-(** Create an Async-bases session manager given a compatible backend. *)
+(** Create an Async-based session manager given a compatible backend. *)
 module Make(B:Backend with type +'a io = 'a Deferred.t) : S
   with type +'a io = 'a Deferred.t
    and type backend = B.t

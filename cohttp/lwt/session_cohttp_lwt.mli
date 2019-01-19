@@ -2,7 +2,7 @@
 
 open Session_cohttp
 
-(** Create an Lwt-bases session manager given a compatible backend. *)
+(** Create an Lwt-based session manager given a compatible backend. *)
 module Make(B:Backend with type +'a io = 'a Lwt.t) : S
   with type +'a io = 'a Lwt.t
    and type backend = B.t

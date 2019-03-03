@@ -1,0 +1,24 @@
+(executable
+ (name cohttp_async_counter)
+ (modules cohttp_async_counter)
+ (libraries session-cohttp-async nocrypto.unix))
+
+(executable
+ (name cohttp_lwt_counter)
+ (modules cohttp_lwt_counter)
+ (libraries session-cohttp-lwt))
+
+(executable
+ (name webmachine_async_counter)
+ (modules webmachine_async_counter)
+ (libraries session-webmachine cohttp-async nocrypto.unix))
+
+(executable
+ (name webmachine_lwt_counter)
+ (modules webmachine_lwt_counter)
+ (libraries session-webmachine cohttp-lwt-unix))
+
+(alias
+ (name all)
+ (deps cohttp_async_counter.exe cohttp_async_counter.exe
+   webmachine_lwt_counter.exe webmachine_async_counter.exe))

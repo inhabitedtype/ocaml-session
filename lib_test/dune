@@ -1,4 +1,4 @@
 (library
  (name session_test)
  (wrapped false)
- (libraries session oUnit nocrypto.unix))
+ (libraries session oUnit mirage-crypto-rng mirage-crypto-rng.unix))

@@ -8,7 +8,9 @@ doc: "https://inhabitedtype.github.io/ocaml-session/"
 depends: [
   "ocaml" {>= "4.03.0"}
   "dune" {build & >= "1.0"}
-  "nocrypto"
+  "mirage-crypto"
+  "mirage-crypto-rng"
+  "base64"
   "result"
   "ounit" {with-test & >= "1.0.2"}
 ]

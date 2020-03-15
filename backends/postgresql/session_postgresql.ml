@@ -65,7 +65,7 @@ let connect ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?require
   new connection ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly ()
 
 let gensym () =
-  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
+  Base64.encode_exn (Cstruct.to_string (Mirage_crypto_rng.generate 30))
 
 let now () =
   Int64.of_float (Unix.time ())

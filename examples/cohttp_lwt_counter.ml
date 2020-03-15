@@ -31,5 +31,5 @@ let main () =
     Printf.eprintf "cohttp_lwt_counter: lsitening on 0.0.0.0:%d\n%!" port
 
 let () =
-  Nocrypto_entropy_unix.initialize ();
+  Mirage_crypto_rng_unix.initialize ();
   Lwt_main.run (main ())

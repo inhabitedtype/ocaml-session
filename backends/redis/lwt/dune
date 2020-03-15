@@ -1,4 +1,4 @@
 (library
  (name session_redis_lwt)
  (public_name session-redis-lwt)
- (libraries lwt nocrypto redis-lwt result session))
+ (libraries lwt mirage-crypto redis-lwt result session))

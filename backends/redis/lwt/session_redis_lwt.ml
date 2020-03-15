@@ -52,7 +52,7 @@ let _default_period =
   Int64.of_int (60 * 60 * 24 * 7)
 
 let gensym () =
-  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
+  Base64.encode_exn (Cstruct.to_string (Mirage_crypto_rng.generate 30))
 
 let redis_key k = "session:" ^ k
 

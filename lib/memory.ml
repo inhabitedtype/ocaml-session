@@ -44,7 +44,7 @@ type t =
   ; mutable default_period : period }
 
 let gensym () =
-  Base64.encode_exn (Cstruct.to_string (Mirage_crypto_rng.generate 30))
+  Base64.encode_string (Cstruct.to_string (Mirage_crypto_rng.generate 30))
 
 let create () =
   { store = Hashtbl.create 10

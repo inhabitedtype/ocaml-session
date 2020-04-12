@@ -1,0 +1,4 @@
+(library
+ (name session_sqlite)
+ (public_name session-sqlite)
+ (libraries mirage-crypto-rng base64 sqlite3 session))

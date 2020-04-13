@@ -33,8 +33,6 @@
 
 (** Session-related signatures and types. *)
 
-open Result
-
 
 (** The type of a session error.
 

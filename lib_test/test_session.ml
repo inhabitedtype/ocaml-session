@@ -13,8 +13,8 @@ end
 module Make(B:Backend) = struct
 
   let is_ok = function
-    | Result.Ok _    -> true
-    | Result.Error _ -> false
+    | Ok _    -> true
+    | Error _ -> false
 
   let err_to_string = function
     | Session.S.Not_found -> "Not_found"

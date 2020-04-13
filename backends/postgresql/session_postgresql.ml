@@ -94,7 +94,7 @@ let get (t:t) key =
        FROM session WHERE session_key = $1"
   in
   if result#ntuples = 0 then
-    Result.Error Session.S.Not_found
+    Error Session.S.Not_found
   else begin
     assert (result#ntuples = 1);
     assert (result#nfields = 2);
@@ -103,11 +103,11 @@ let get (t:t) key =
     let expiry = Scanf.sscanf (result#getvalue 0 0) "%Ld" (fun x -> x) in
     let period = Int64.(sub expiry (now ())) in
     if Int64.compare period 0L < 0 then
-      Result.Error Session.S.Not_found
+      Error Session.S.Not_found
     else if result#getvalue 0 1 = null then
-      Result.Error Session.S.Not_set
+      Error Session.S.Not_set
     else
-      Result.Ok (result#getvalue 0 1, period)
+      Ok (result#getvalue 0 1, period)
   end
 
 let _prepare_expiry t = function

@@ -34,7 +34,6 @@
 (** Cohttp-aware session management for your everyday needs. *)
 
 open Cohttp
-open Result
 
 (** The signature for a Cohttp-compatible backend. *)
 module type Backend = Session.S.Future

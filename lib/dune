@@ -1,4 +1,4 @@
 (library
  (name session)
  (public_name session)
- (libraries mirage-crypto-rng base64 result))
+ (libraries mirage-crypto-rng base64))

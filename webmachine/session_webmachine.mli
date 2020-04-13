@@ -34,7 +34,6 @@
 (** Webmachine-aware session management for your everyday needs. *)
 
 open Webmachine
-open Result
 
 (** The signature for a Webmachine-compatible backend. It is the same as a
     Cohttp-compatible backend. *)

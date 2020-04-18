@@ -1,6 +1,6 @@
 (executable
  (name test)
- (libraries session_test session nocrypto.unix))
+ (libraries session_test session mirage-crypto-rng mirage-crypto-rng.unix))
 
 (alias
  (name runtest)

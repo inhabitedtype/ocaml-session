@@ -7,9 +7,9 @@ homepage: "https://github.com/inhabitedtype/ocaml-session"
 bug-reports: "https://github.com/inhabitedtype/ocaml-session/issues"
 doc: "https://inhabitedtype.github.io/ocaml-session/"
 depends: [
-  "ocaml"
+  "ocaml" {>= "4.07.0"}
   "dune" {build & >= "1.0"}
-  "session-cohttp"
+  "session-cohttp" {>= "0.4.2"}
   "cohttp-async"
   "async"
   "base-threads"

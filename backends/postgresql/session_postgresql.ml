@@ -31,16 +31,14 @@
     POSSIBILITY OF SUCH DAMAGE.
   ----------------------------------------------------------------------------*)
 
-open Postgresql
-
-type t = connection
+type t = Postgresql.connection
 type key = string
 type value = string
 type period = int64
 
 module W = struct
   type data =
-    { conn : connection
+    { conn : Postgresql.connection
     ; mutable period : period }
 
   module T : Weak.S with type data := data =
@@ -62,10 +60,10 @@ let _default_period_table =
   W.create 5
 
 let connect ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly () =
-  new connection ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly ()
+  new Postgresql.connection ?host ?hostaddr ?port ?dbname ?user ?password ?options ?tty ?requiressl ?conninfo ?startonly ()
 
 let gensym () =
-  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
+  Base64.encode_string (Cstruct.to_string (Mirage_crypto_rng.generate 30))
 
 let now () =
   Int64.of_float (Unix.time ())
@@ -94,7 +92,7 @@ let get (t:t) key =
        FROM session WHERE session_key = $1"
   in
   if result#ntuples = 0 then
-    Result.Error Session.S.Not_found
+    Error Session.S.Not_found
   else begin
     assert (result#ntuples = 1);
     assert (result#nfields = 2);
@@ -103,18 +101,18 @@ let get (t:t) key =
     let expiry = Scanf.sscanf (result#getvalue 0 0) "%Ld" (fun x -> x) in
     let period = Int64.(sub expiry (now ())) in
     if Int64.compare period 0L < 0 then
-      Result.Error Session.S.Not_found
-    else if result#getvalue 0 1 = null then
-      Result.Error Session.S.Not_set
+      Error Session.S.Not_found
+    else if result#getvalue 0 1 = Postgresql.null then
+      Error Session.S.Not_set
     else
-      Result.Ok (result#getvalue 0 1, period)
+      Ok (result#getvalue 0 1, period)
   end
 
 let _prepare_expiry t = function
   | None        -> Printf.sprintf "%Ld seconds" (default_period t)
   | Some expiry -> Printf.sprintf "%Ld seconds" expiry
 
-let _set ?expiry ?(value=null) (t:t) key =
+let _set ?expiry ?(value=Postgresql.null) (t:t) key =
   let params = [| key; _prepare_expiry t expiry; value |] in
   let _ = t#exec ~expect:[Command_ok] ~params
     "UPDATE session SET session_data = $3, expire_date = NOW() + CAST($2 AS INTERVAL)
@@ -125,7 +123,7 @@ let _set ?expiry ?(value=null) (t:t) key =
 let set ?expiry t key value =
   _set ?expiry ~value t key
 
-let generate ?expiry ?(value=null) (t:t) =
+let generate ?expiry ?(value=Postgresql.null) (t:t) =
   let key : key = gensym () in
   let params = [| key; _prepare_expiry t expiry; value |] in
   let _ = t#exec ~expect:[Command_ok] ~params

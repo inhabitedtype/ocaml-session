@@ -52,7 +52,7 @@ let _default_period =
   Int64.of_int (60 * 60 * 24 * 7)
 
 let gensym () =
-  Cstruct.to_string Nocrypto.(Base64.encode (Rng.generate 30))
+  Base64.encode_string (Cstruct.to_string (Mirage_crypto_rng.generate 30))
 
 let redis_key k = "session:" ^ k
 
@@ -72,18 +72,18 @@ let get (t:t) key =
   let key = redis_key key in
   Lwt_pool.use t.pool @@ fun conn ->
   R.get conn key >>= function
-  | None -> Lwt.return (Result.Error Session.S.Not_found)
-  | Some "-" -> Lwt.return (Result.Error Session.S.Not_set)
+  | None -> Lwt.return (Error Session.S.Not_found)
+  | Some "-" -> Lwt.return (Error Session.S.Not_set)
   | Some encoded_value ->
     (* Redis supports pipelining, but we can't use it due to
        https://github.com/0xffea/ocaml-redis/issues/42, so we
        wait for the value to arrive before asking for the ttl. *)
     R.ttl conn key >|= function
-    | None -> Result.Error Session.S.Not_found
+    | None -> Error Session.S.Not_found
     | Some s_to_live ->
       assert (encoded_value.[0] = '+');
       let value = String.sub encoded_value 1 (String.length encoded_value - 1) in
-      Result.Ok (value, Int64.of_int s_to_live)
+      Ok (value, Int64.of_int s_to_live)
 
 let set_opt ?expiry t key value =
   let key = redis_key key in

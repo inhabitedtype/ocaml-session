@@ -31,7 +31,6 @@
     POSSIBILITY OF SUCH DAMAGE.
   ----------------------------------------------------------------------------*)
 
-open Result
 open Webmachine
 
 module type Backend = Session_cohttp.Backend

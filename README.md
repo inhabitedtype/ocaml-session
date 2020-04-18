@@ -37,8 +37,6 @@ module Session = struct
   include Session_cohttp_lwt.Make(Backend)
 end
 
-open Result
-
 let cookie_key = "__session"
 
 let callback conn { Request.headers; uri } body =

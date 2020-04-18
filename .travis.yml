@@ -7,9 +7,9 @@ env:
   - PINS="session.dev:. session-cohttp.dev:. session-cohttp-lwt.dev:. session-cohttp-async.dev:. session-webmachine.dev:. session-redis-lwt.dev:. session-postgresql.dev:. session-postgresql-lwt.dev:. session-postgresql-async.dev:. session-sqlite.dev:."
   matrix:
   - OCAML_VERSION=4.08 PACKAGE=session-sqlite
-  - OCAML_VERSION=4.03 PACKAGE=session-cohttp-lwt
-  - OCAML_VERSION=4.04 PACKAGE=session-cohttp-async
-  - OCAML_VERSION=4.05 PACKAGE=session-webmachine
-  - OCAML_VERSION=4.03 PACKAGE=session-redis-lwt
-  - OCAML_VERSION=4.04 PACKAGE=session-postgresql-lwt
-  - OCAML_VERSION=4.05 PACKAGE=session-postgresql-async
+  - OCAML_VERSION=4.07 PACKAGE=session-cohttp-lwt
+  - OCAML_VERSION=4.08 PACKAGE=session-cohttp-async
+  - OCAML_VERSION=4.09 PACKAGE=session-webmachine
+  - OCAML_VERSION=4.10 PACKAGE=session-redis-lwt
+  - OCAML_VERSION=4.07 PACKAGE=session-postgresql-lwt
+  - OCAML_VERSION=4.08 PACKAGE=session-postgresql-async

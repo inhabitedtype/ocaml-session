@@ -65,5 +65,5 @@ let main () =
     Log.Global.info "webmachine_async_counter: listening on 0.0.0.0:%d%!" port
 
 let _ =
-  Nocrypto_entropy_unix.initialize ();
+  Mirage_crypto_rng_unix.initialize ();
   Scheduler.go_main ~main ()

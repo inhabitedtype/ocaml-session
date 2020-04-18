@@ -32,7 +32,6 @@
   ----------------------------------------------------------------------------*)
 
 open Cohttp
-open Result
 
 module type Backend = Session.S.Future
   with type key = string

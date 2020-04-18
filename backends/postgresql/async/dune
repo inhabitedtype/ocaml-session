@@ -1,4 +1,4 @@
 (library
  (name session_postgresql_async)
  (public_name session-postgresql-async)
- (libraries async postgresql result session-postgresql threads))
+ (libraries async postgresql session-postgresql threads))

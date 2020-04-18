@@ -1,7 +1,7 @@
 (executable
  (name cohttp_async_counter)
  (modules cohttp_async_counter)
- (libraries session-cohttp-async nocrypto.unix))
+ (libraries session-cohttp-async mirage-crypto-rng mirage-crypto-rng.unix))
 
 (executable
  (name cohttp_lwt_counter)
@@ -11,7 +11,7 @@
 (executable
  (name webmachine_async_counter)
  (modules webmachine_async_counter)
- (libraries session-webmachine cohttp-async nocrypto.unix))
+ (libraries session-webmachine cohttp-async mirage-crypto-rng mirage-crypto-rng.unix))
 
 (executable
  (name webmachine_lwt_counter)

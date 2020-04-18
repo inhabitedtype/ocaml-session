@@ -3,5 +3,5 @@ module Backend = struct
   let name = "memory"
 end
 
-let () = Nocrypto_entropy_unix.initialize ()
+let () = Mirage_crypto_rng_unix.initialize ()
 module Test = Test_session.Make(Backend)

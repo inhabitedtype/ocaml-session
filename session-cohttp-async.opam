@@ -1,3 +1,4 @@
+version: "0.5.0"
 opam-version: "2.0"
 name: "session-cohttp-async"
 maintainer: "Spiros Eliopoulos <spiros@inhabitedtype.com>"

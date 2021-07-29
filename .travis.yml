@@ -12,3 +12,4 @@ env:
   - OCAML_VERSION=4.10 PACKAGE=session-redis-lwt
   - OCAML_VERSION=4.07 PACKAGE=session-postgresql-lwt
   - OCAML_VERSION=4.08 PACKAGE=session-postgresql-async
+  - OCAML_VERSION=4.10 PACKAGE=session

@@ -1,0 +1,78 @@
+name: build
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  builds:
+    name: Earliest Supported Version
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        ocaml-version:
+          - 4.07.0
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use OCaml ${{ matrix.ocaml-version }}
+        uses: avsm/setup-ocaml@v1
+        with:
+          ocaml-version: ${{ matrix.ocaml-version }}
+
+      - name: Deps
+        run: |
+          opam pin add -n session .
+          opam install --deps-only session
+
+      - name: Build
+        run: opam exec -- dune build -p session
+
+  tests:
+    name: Tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        ocaml-version:
+          - 4.08.1
+          - 4.10.2
+          - 4.11.2
+          - 4.12.0
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use OCaml ${{ matrix.ocaml-version }}
+        uses: avsm/setup-ocaml@v1
+        with:
+          ocaml-version: ${{ matrix.ocaml-version }}
+
+      - name: Deps
+        run: |
+          opam pin add -n session .
+          opam pin add -n session-cohttp .
+          opam pin add -n session-cohttp-async .
+          opam pin add -n session-cohttp-lwt .
+          opam pin add -n session-postgresql .
+          opam pin add -n session-postgresql-async .
+          opam pin add -n session-postgresql-lwt .
+          opam pin add -n session-redis-lwt .
+          opam pin add -n session-webmachine .
+          opam install -t --deps-only .
+
+      - name: Build
+        run: opam exec -- dune build
+
+      - name: Test
+        run: opam exec -- dune runtest

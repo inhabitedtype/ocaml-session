@@ -75,4 +75,4 @@ jobs:
         run: opam exec -- dune build
 
       - name: Test
-        run: opam exec -- dune runtest
+        run: opam exec -- dune runtest -p session

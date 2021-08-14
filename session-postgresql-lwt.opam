@@ -9,7 +9,7 @@ doc: "https://inhabitedtype.github.io/ocaml-session/"
 depends: [
   "ocaml" {>= "4.07.0"}
   "dune" {>= "1.0"}
-  "session-postgresql" {>= "0.4.2"}
+  "session-postgresql" {= version}
   "lwt" {>= "3.2.0"}
 ]
 build: [

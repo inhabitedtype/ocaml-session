@@ -6,7 +6,7 @@
 (executable
  (name cohttp_lwt_counter)
  (modules cohttp_lwt_counter)
- (libraries session-cohttp-lwt))
+ (libraries session-cohttp-lwt cohttp-lwt-unix))
 
 (executable
  (name webmachine_async_counter)

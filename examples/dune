@@ -6,17 +6,17 @@
 (executable
  (name cohttp_lwt_counter)
  (modules cohttp_lwt_counter)
- (libraries session-cohttp-lwt cohttp-lwt-unix))
+ (libraries session-cohttp-lwt cohttp-lwt-unix mirage-crypto-rng.unix))
 
 (executable
  (name webmachine_async_counter)
  (modules webmachine_async_counter)
- (libraries session-webmachine cohttp-async mirage-crypto-rng mirage-crypto-rng.unix))
+ (libraries session-webmachine cohttp-async mirage-crypto-rng.unix))
 
 (executable
  (name webmachine_lwt_counter)
  (modules webmachine_lwt_counter)
- (libraries session-webmachine cohttp-lwt-unix))
+ (libraries session-webmachine cohttp-lwt-unix mirage-crypto-rng.unix))
 
 (alias
  (name all)

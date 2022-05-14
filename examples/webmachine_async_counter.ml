@@ -11,7 +11,10 @@ end
 let cookie_key = "__counter_session"
 
 module Rd = Webmachine.Rd
-include Webmachine.Make(Cohttp_async.Io)
+module UnixClock = struct
+  let now () = int_of_float (Unix.gettimeofday ())
+end
+include Webmachine.Make(Cohttp_async.Io)(UnixClock)
 
 open Cohttp_async
 
@@ -60,7 +63,7 @@ let main () =
     >>= fun (_status, headers, body, _) ->
       Server.respond ~headers ~body `OK
   in
-  Server.create ~on_handler_error:`Raise (Tcp.on_port port) handler
+  Server.create ~on_handler_error:`Raise (Tcp.Where_to_listen.of_port port) handler
   >>> fun _server ->
     Log.Global.info "webmachine_async_counter: listening on 0.0.0.0:%d%!" port
 

@@ -26,7 +26,7 @@ let main () =
     and body    = `String (session.Session.value) in
     Server.respond ~headers ~body `OK
   in
-  Server.create ~on_handler_error:`Raise (Tcp.on_port port) handler
+  Server.create ~on_handler_error:`Raise (Tcp.Where_to_listen.of_port port) handler
   >>> fun _server ->
     Log.Global.info "cohttp_async_counter: listening on 0.0.0.0:%d%!" port
 

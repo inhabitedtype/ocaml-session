@@ -9,14 +9,17 @@ end
 let cookie_key = "__counter_session"
 
 module Rd = Webmachine.Rd
-include Webmachine.Make(Cohttp_lwt_unix_io)
+module UnixClock = struct
+  let now () = int_of_float (Unix.gettimeofday ())
+end
+include Webmachine.Make(Cohttp_lwt_unix.IO)(UnixClock)
 
 open Lwt.Infix
 open Cohttp_lwt_unix
 
 class counter backend = object(self)
-  inherit [Cohttp_lwt_body.t] resource
-  inherit [Cohttp_lwt_body.t] Session.manager ~cookie_key backend
+  inherit [Cohttp_lwt.Body.t] resource
+  inherit [Cohttp_lwt.Body.t] Session.manager ~cookie_key backend
 
   method private increment session rd =
     let value = string_of_int (1 + int_of_string session.Session.value) in

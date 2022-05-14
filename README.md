@@ -5,8 +5,7 @@ storage for HTTP servers. The library supports [CoHTTP][] and [Webmachine][];
 [Async][] and [Lwt][]; and pluggable backing stores based on a functor
 interface.
 
-[![Build Status](https://travis-ci.org/inhabitedtype/ocaml-session.svg?branch=master)](https://travis-ci.org/inhabitedtype/ocaml-session)
-
+[![Build Status](https://github.com/inhabitedtype/ocaml-session/workflows/build/badge.svg)](https://github.com/inhabitedtype/ocaml-session/actions?query=workflow%3A%22build%22)
 
 [CoHTTP]: https://github.com/mirage/ocaml-cohttp
 [Webmachine]: https://github.com/inhabitedtype/ocaml-webmachine

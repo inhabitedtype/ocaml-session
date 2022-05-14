@@ -3,7 +3,7 @@
  (libraries session_test session-postgresql mirage-crypto-rng mirage-crypto-rng.unix))
 
 (alias
- (name runtest)
+ (name runtest-pgsql)
  (package session-postgresql)
  (deps test.exe)
  (action

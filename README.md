@@ -59,7 +59,7 @@ To build them, reconfigure the build to enable examples, an i/o library of our
 choice (e.g., Async or Lwt), as well as the library you're using to build your
 server (e.g., CoHTTP or Webmachine):
 
-[examples]: https://github.com/inhabitedtype/tree/master/examples
+[examples]: https://github.com/inhabitedtype/ocaml-session/tree/master/examples
 
 ```bash
 ./configure --enable-examples --enable-async --enable-cohttp
